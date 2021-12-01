@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Random Numbers</title>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet"> -->
+    <style>
+      /*h1, p {font-family: Quicksand;}*/
+
+      body {background-color: hsl(0, 100%, 100%);} /* white background with HSL color mode */
+
+      button {display: block;}
+    </style>
+  </head>
+
+  <body>
+    <img id="coin" src="heads.png" alt="penny" width="100" height="100">
+
+    <button type="button">Flip</button>
+
+    <script>
+      // random floating point (decimal number) between 0 (inclusive) and 1 (exclusive)
+      let randomFloat = Math.random();
+      console.log('Random float: ' + randomFloat);
+
+      // random integer (whole number) between 1 and 10
+      let randomInt = Math.floor(Math.random() * 10) + 1;
+      console.log('Random integer: ' + randomInt);
+
+      // coin toss
+      function coinFlip() { // function definition
+        let flip = Math.round(Math.random()); // rounds float (0-1) up or down
+        console.log('Coin flip: ' + flip);
+
+        let image; // create image variable
+
+        if (flip == 0) {
+          image = 'heads.png'; // assign file name to variable
+        } else {
+          image = 'tails.png';
+        }
+
+        let coin = document.querySelector('#coin');
+        coin.src = image; // change src property of <img> element        
+      }
+
+      // random background color
+      function bgColor() { // function definition
+        const background = document.querySelector('body');
+        let randomHue = Math.floor(Math.random() * 500);
+        console.log('Random hue: ' + randomHue);
+        // apply color with style object using HSL color mode
+        background.style.backgroundColor = 'hsl(' + randomHue + ', 100%, 50%)';
+      }
+
+      // function call (not in response to a user event)
+      bgColor();
+
+      // access button
+      let btn = document.querySelector('button');
+
+      // DOM event handler
+      // btn.onclick = coinFlip; // function call in response to event
+
+      // DOM event listeners
+      btn.addEventListener('click', coinFlip); // function call in response to event
+      // btn.addEventListener('click', bgColor);
+
+      // DOM event listener for multiple function calls
+      // btn.addEventListener('click', function() {
+      //   bgColor();
+      //   coinFlip();
+      // });
+    </script>
+  </body>
+</html>
